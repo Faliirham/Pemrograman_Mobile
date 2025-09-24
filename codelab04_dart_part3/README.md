@@ -97,7 +97,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Langkah 2**
 
-![alt text](image.png)
+![alt text](img/image_.png)
 
 **Penjelasan:**   Kode tersebut membuat sebuah list pertama bernama list1 dengan isi [1, 2, 3]. Kemudian dibuat list kedua list2 yang berisi angka 0 diikuti seluruh isi list1 menggunakan operator spread (...list1). Dengan begitu, list2 akan berisi [0, 1, 2, 3]. Saat dicetak, program menampilkan isi list1 yaitu [1, 2, 3], kemudian isi list2 yaitu [0, 1, 2, 3], dan terakhir panjang list2 yang bernilai 4 karena terdapat empat elemen di dalamnya. Operator spread di sini memudahkan untuk menyalin isi dari list lain ke dalam list baru tanpa harus menambahkannya satu per satu.
 
@@ -107,7 +107,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Terjadi Error :**
 
-![alt text](image-1.png)
+![alt text](img/image_1.png)
 
 **Perbaikan Kode dan penambahan NIM**
 
@@ -115,7 +115,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Output**
 
-![alt text](image-2.png)
+![alt text](img/image_2.png)
 
 **Langkah 4**
 
@@ -123,11 +123,11 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 ***Ketika promoActive true Outlet akan muncul:***
 
-![alt text](image-3.png)
+![alt text](img/image_3.png)
 
 ***Ketika promoActive false Outlet tidak muncul:***
 
-![alt text](image-4.png)
+![alt text](img/image_4.png)
 
 **Langkah 5**
 
@@ -135,11 +135,11 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 ***Ketika login = 'Manager' Inventory akan muncul:***
 
-![alt text](image-5.png)
+![alt text](img/image_5.png)
 
 ***Ketika Login = 'Customer' Inventory tidak akan muncul:***
 
-![alt text](image-6.png)
+![alt text](img/image_6.png)
 
 **Langkah 6**
 
@@ -147,7 +147,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Output:**
 
-![alt text](image-7.png)
+![alt text](img/image_7.png)
 
 **Penjelasan:**   Collection For di Dart digunakan untuk membuat list dengan cara yang lebih singkat dan jelas. Pada kode ini, listOfInts berisi [1, 2, 3], lalu listOfStrings dibuat dengan menambahkan '#0' dan hasil perulangan dari listOfInts sehingga terbentuk ['#0', '#1', '#2', '#3']. Dengan Collection For, proses membentuk list lebih ringkas dibanding harus menambahkan elemen satu per satu.
 
@@ -162,7 +162,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Langkah 2**
 
-![alt text](image-8.png)
+![alt text](img/image_8.png)
 
 **Penjelasan:**   Kode tersebut membuat sebuah record yang berisi dua nilai positional yaitu 'first' dan 'last', serta dua nilai named yaitu a: 2 dan b: true. Record ini dicetak dengan print(record) sehingga hasilnya (first, last, a: 2, b: true). Record berguna untuk menyimpan beberapa data sekaligus tanpa harus membuat class atau map, dan lebih efisien ketika kita hanya butuh mengelompokkan nilai sederhana dengan kombinasi positional dan named fields.
 
@@ -176,7 +176,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Outputnya:**
 
-![alt text](image-9.png)
+![alt text](img/image_9.png)
 
 **Langkah 4**
 
@@ -184,7 +184,7 @@ Ketika perintah print(gifts); dijalankan, seluruh isi map pertama ditampilkan da
 
 **Outputnya:**
 
-![alt text](image-10.png)
+![alt text](img/image_10.png)
 
 **Penjelasan:**
 
@@ -196,7 +196,7 @@ Kode Record dengan tipe (String, int), record ini hanya berisi dua data: elemen 
 
 **Outputnya:**
 
-![alt text](image-11.png)
+![alt text](img/image_11.png)
 
 **Penjelasan:**   Kode tersebut merupakan sebuah record bernama mahasiswa2 yang berisi kombinasi field positional dan named. Nilai 'first' dan '2341720121' disimpan sebagai positional field, sementara a: 'Fali Irham Maulana' dan b: true disimpan sebagai named field. Saat dicetak, mahasiswa2.$1 akan menampilkan 'first' karena $1 merujuk pada elemen positional pertama, mahasiswa2.a akan menampilkan 'Fali Irham Maulana' karena itu adalah field bernama a, mahasiswa2.b akan menampilkan true karena itu adalah field bernama b, dan mahasiswa2.$2 akan menampilkan '2341720121' karena $2 merujuk pada elemen positional kedua. Dengan demikian record ini memperlihatkan bagaimana Dart memungkinkan kita mencampur data positional dan named dalam satu struktur sederhana.
 

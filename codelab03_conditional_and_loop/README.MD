@@ -15,7 +15,7 @@
 
 **Langkah 2**
 
-![alt text](image.png)
+![alt text](img/image-.png)
 
 **Penjelasan :** Kode Dart tersebut mendemonstrasikan bagaimana operator perbandingan dan struktur percabangan bekerja. Variabel test diberi nilai ``"test2"``, kemudian diperiksa dengan operator ==, yaitu operator perbandingan yang digunakan untuk mengecek apakah dua nilai sama. Pada blok pertama, program menggunakan `` if (test == "test1")`` untuk membandingkan nilai variabel test dengan string ``"test1"``. Karena hasil perbandingan ini bernilai salah (false), program melanjutkan ke bagian ``else if (test == "test2")``. Pada kondisi ini, perbandingan bernilai benar (true), sehingga program mengeksekusi perintah ``print("Test2")``. Apabila kedua perbandingan sebelumnya salah, barulah bagian else dijalankan untuk menampilkan "Something else". Setelah percabangan utama, terdapat pernyataan ``if (test == "test2")`` lagi, tetapi kali ini ditulis dalam bentuk singkat tanpa blok kurung kurawal, sehingga hanya satu baris kode ``print("Test2 again")`` yang dijalankan ketika kondisi bernilai benar. Karena nilai test memang "test2", kondisi ini terpenuhi dan baris tersebut dijalankan. Dengan demikian, output program adalah "Test2" dan "Test2 again", yang menunjukkan bahwa operator == berfungsi untuk membandingkan kesamaan nilai dan struktur if-else digunakan untuk mengatur alur eksekusi berdasarkan hasil perbandingan tersebut.
 

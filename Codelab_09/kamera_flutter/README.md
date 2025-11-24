@@ -8,18 +8,26 @@
 
 ### Langkah 1: Buat Project Baru
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 ### Langkah 2: Tambah dependensi yang diperlukan
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
-### Langkah 3: Ambil Sensor Kamera dari device
+### Langkah 3 - 9 : 
 
-![alt text](code.png)
+- **takepicture_screen.dart :** 
 
-### Langkah 4: Buat dan inisialisasi CameraController
+![alt text](images/code.png)
 
-![alt text](code1.png)
+- **displaypicture_screen.dart :**
 
-### Langkah 5: Gunakan CameraPreview untuk menampilkan preview foto
+![alt text](images/code1.png)
+
+- **main.dart :**
+
+![alt text](images/code2.png)
+
+### Output Hasil : 
+
+![alt text](images/image-2.jpg)

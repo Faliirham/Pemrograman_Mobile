@@ -81,3 +81,17 @@ Soal 5
 **Penjelasan :** Kode pada langkah tersebut menunjukkan cara kerja Completer untuk membuat sebuah future yang kendali penyelesaiannya ditentukan secara manual. Variabel completer dideklarasikan sebagai late, artinya ia akan diinisialisasi nanti ketika fungsi getNumber dipanggil. Di dalam getNumber, sebuah objek Completer<int> dibuat sehingga menghasilkan future yang belum terselesaikan, lalu fungsi calculate dijalankan untuk melakukan proses asynchronous. Ketika calculate dijalankan, ia menunggu selama lima detik menggunakan Future.delayed sebagai simulasi proses yang memerlukan waktu, dan setelah waktu tersebut selesai, completer.complete dipanggil untuk memberikan nilai 42 sebagai hasil akhir.
 
 ![alt text](<images/hasil 3.gif>)
+
+### Langkah 5 - 6 
+
+![alt text](images/code5.png)
+
+```
+Soal 6
+- Jelaskan maksud perbedaan kode langkah 2 dengan langkah 5-6 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 6".
+```
+
+**Penjelasan :** Perbedaan antara langkah 2 dan langkah 5–6 terletak pada cara keduanya menangani proses asynchronous serta bagaimana mereka menghadapi kemungkinan terjadinya error. Pada langkah 2, fungsi calculate berjalan tanpa mekanisme penanganan kesalahan; ia hanya menunggu lima detik dan kemudian memanggil completer.complete untuk menyelesaikan future dengan nilai 42. Jika terjadi kegagalan, misalnya completer sudah pernah diselesaikan sebelumnya, fungsi tersebut tidak memiliki cara untuk memberikan sinyal bahwa kesalahan terjadi sehingga errornya dapat menyebabkan aplikasi berhenti atau memunculkan pengecualian yang tidak tertangani. Sementara itu, langkah 5–6, yaitu calculate2 dan pemanggilan getNumber di dalam onPressed, menambahkan lapisan keamanan dengan try–catch. Jika terjadi error selama proses asynchronous, completer.completeError dipanggil untuk mengirimkan error sebagai nilai future. Bagian onPressed kemudian memanfaatkan catchError untuk menangkap error tersebut sehingga aplikasi dapat menampilkan pesan yang lebih ramah, seperti “An error occurred,” tanpa membuat aplikasi crash.
+
+![alt text](<images/hasil 4.gif>)

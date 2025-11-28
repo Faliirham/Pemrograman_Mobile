@@ -88,6 +88,22 @@ class _FuturePageState extends State<Futurepage> {
     }
   }
 
+  void returnFG (){
+    FutureGroup<int> futureGroup = FutureGroup<int>();
+    futureGroup.add(returnOneAsync());
+    futureGroup.add(returnTwoAsync());
+    futureGroup.add(returnThreeAsync());
+    futureGroup.close();
+    futureGroup.future.then((List <int> values) {
+      int total = 0;
+      for (var element in values) {
+        total += element;
+      }
+      setState(() {
+        result = total.toString();
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,13 +131,7 @@ class _FuturePageState extends State<Futurepage> {
               //   count();
               // },
                onPressed: () {
-                getNumber().then((value) {
-                  setState(() {
-                    result = value.toString();
-                  });
-                }).catchError((e){
-                  result = 'An error occurred';
-                });
+                returnFG();
               },
             ),
             const Spacer(),

@@ -95,3 +95,16 @@ Soal 6
 **Penjelasan :** Perbedaan antara langkah 2 dan langkah 5–6 terletak pada cara keduanya menangani proses asynchronous serta bagaimana mereka menghadapi kemungkinan terjadinya error. Pada langkah 2, fungsi calculate berjalan tanpa mekanisme penanganan kesalahan; ia hanya menunggu lima detik dan kemudian memanggil completer.complete untuk menyelesaikan future dengan nilai 42. Jika terjadi kegagalan, misalnya completer sudah pernah diselesaikan sebelumnya, fungsi tersebut tidak memiliki cara untuk memberikan sinyal bahwa kesalahan terjadi sehingga errornya dapat menyebabkan aplikasi berhenti atau memunculkan pengecualian yang tidak tertangani. Sementara itu, langkah 5–6, yaitu calculate2 dan pemanggilan getNumber di dalam onPressed, menambahkan lapisan keamanan dengan try–catch. Jika terjadi error selama proses asynchronous, completer.completeError dipanggil untuk mengirimkan error sebagai nilai future. Bagian onPressed kemudian memanfaatkan catchError untuk menangkap error tersebut sehingga aplikasi dapat menampilkan pesan yang lebih ramah, seperti “An error occurred,” tanpa membuat aplikasi crash.
 
 ![alt text](<images/hasil 4.gif>)
+
+## **Praktikum 4: Memanggil Future secara paralel**
+
+### Langkah 1 - 3
+
+![alt text](images/code6.png)
+
+```
+Soal 7
+Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 7".
+```
+
+![alt text](<images/hasil 5.gif>)

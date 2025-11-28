@@ -34,7 +34,7 @@ Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika 
 ```
 ![alt text](image-2.png)
 
-### 5: Tambah kode di ElevatedButton
+### Langkah 5: Tambah kode di ElevatedButton
 
 ![alt text](images/code2.png)
 
@@ -47,3 +47,20 @@ Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan co
 **Jawaban :** Pada langkah tersebut, substring digunakan untuk mengambil sebagian isi respons dari server, tepatnya hanya karakter dari indeks 0 sampai 450, sehingga data yang ditampilkan tidak seluruhnya tetapi dipotong agar lebih ringkas atau menghindari teks yang terlalu panjang. Sementara itu, catchError berfungsi menangkap dan menangani error yang mungkin terjadi ketika proses getData dijalankan, misalnya ketika koneksi gagal atau server tidak merespons. Jika terjadi error, blok catchError akan men-set nilai result menjadi pesan “An error occurred” sehingga aplikasi tetap memberikan keluaran yang jelas dan tidak crash, kemudian memanggil setState untuk memperbarui tampilan sesuai kondisi tersebut.
 
 ![alt text](<images/hasil 1.gif>)
+
+## **Praktikum 2: Menggunakan await/async untuk menghindari callbacks**
+
+### Langkah 1 - 4
+
+![alt text](images/code3.png)
+
+```
+Soal 4
+- Jelaskan maksud kode langkah 1 dan 2 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 4".
+```
+**Penjelasan :** Pada langkah pertama, tiga fungsi asynchronous dibuat untuk mensimulasikan proses yang memerlukan waktu, masing-masing menunggu tiga detik sebelum mengembalikan nilai 1, 2, dan 3. Fungsi returnOneAsync, returnTwoAsync, dan returnThreeAsync menggunakan await Future.delayed untuk menunda pengembalian hasil, sehingga dapat menggambarkan proses seperti pengambilan data dari server atau perhitungan berat yang tidak langsung selesai.
+
+Pada langkah kedua, fungsi count menjalankan ketiga fungsi asynchronous tersebut secara berurutan menggunakan await sehingga setiap proses harus benar-benar selesai sebelum melanjutkan ke proses berikutnya. Nilai yang dikembalikan dari masing-masing fungsi dijumlahkan ke dalam variabel total, lalu hasil akhirnya ditampilkan ke antarmuka melalui setState dengan mengubah variabel result menjadi nilai total tersebut.
+
+![alt text](<images/hasil 2.gif>)

@@ -134,3 +134,17 @@ Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan co
 ```
 
 ![alt text](<images/hasil 6.gif>)
+
+### Langkah 4: Tambah method handleError()
+
+![alt text](images/code9.png)
+
+```
+Soal 10
+Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!
+```
+**Penjelasan :** Langkah 1 menggunakan pendekatan berbasis future chaining dengan memanfaatkan .then(), .catchError(), dan .whenComplete() langsung pada fungsi yang mengembalikan future. Cara ini melakukan penanganan hasil dan error di luar fungsi, dengan memprosesnya melalui callback berantai. Jika future berhasil, .then() dijalankan; jika gagal, .catchError() menangani error; dan .whenComplete() tetap dipanggil pada akhir proses tanpa peduli sukses atau gagal.
+
+Langkah 4, yaitu fungsi handleError(), menggunakan struktur try–catch–finally di dalam fungsi asynchronous itu sendiri. Penanganan error dilakukan secara internal sehingga alur lebih terpusat dan mirip gaya pemrograman sinkron. Ketika error terjadi, ia langsung tertangkap di dalam blok catch dan UI diperbarui melalui setState. Bagian finally memastikan kode tertentu tetap dijalankan setelah try maupun catch selesai.
+
+![alt text](<images/hasil 7.gif>)

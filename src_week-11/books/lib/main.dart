@@ -93,6 +93,19 @@ class _FuturePageState extends State<Futurepage> {
     throw Exception('Something terrible happened');
   }
 
+  Future handleError() async{
+    try {
+      await returnError();
+      }
+      catch (error) {
+      setState(() {
+        result = error.toString();
+      });
+    }
+    finally {
+      print('complete');
+    }
+  }
   void returnFG (){
     // FutureGroup<int> futureGroup = FutureGroup<int>();
     // futureGroup.add(returnOneAsync());

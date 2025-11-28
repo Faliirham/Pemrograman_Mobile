@@ -64,3 +64,20 @@ Soal 4
 Pada langkah kedua, fungsi count menjalankan ketiga fungsi asynchronous tersebut secara berurutan menggunakan await sehingga setiap proses harus benar-benar selesai sebelum melanjutkan ke proses berikutnya. Nilai yang dikembalikan dari masing-masing fungsi dijumlahkan ke dalam variabel total, lalu hasil akhirnya ditampilkan ke antarmuka melalui setState dengan mengubah variabel result menjadi nilai total tersebut.
 
 ![alt text](<images/hasil 2.gif>)
+
+
+## **Praktikum 3: Menggunakan Completer di Future**
+
+### Langkah 1- 4 
+
+![alt text](images/code4.png)
+
+```
+Soal 5
+- Jelaskan maksud kode langkah 2 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 5".
+```
+
+**Penjelasan :** Kode pada langkah tersebut menunjukkan cara kerja Completer untuk membuat sebuah future yang kendali penyelesaiannya ditentukan secara manual. Variabel completer dideklarasikan sebagai late, artinya ia akan diinisialisasi nanti ketika fungsi getNumber dipanggil. Di dalam getNumber, sebuah objek Completer<int> dibuat sehingga menghasilkan future yang belum terselesaikan, lalu fungsi calculate dijalankan untuk melakukan proses asynchronous. Ketika calculate dijalankan, ia menunggu selama lima detik menggunakan Future.delayed sebagai simulasi proses yang memerlukan waktu, dan setelah waktu tersebut selesai, completer.complete dipanggil untuk memberikan nilai 42 sebagai hasil akhir.
+
+![alt text](<images/hasil 3.gif>)

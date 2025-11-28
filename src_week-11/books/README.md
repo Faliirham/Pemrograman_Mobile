@@ -34,3 +34,16 @@ Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika 
 ```
 ![alt text](image-2.png)
 
+### 5: Tambah kode di ElevatedButton
+
+![alt text](images/code2.png)
+
+```
+Soal 3
+Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!
+Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 3".
+```
+
+**Jawaban :** Pada langkah tersebut, substring digunakan untuk mengambil sebagian isi respons dari server, tepatnya hanya karakter dari indeks 0 sampai 450, sehingga data yang ditampilkan tidak seluruhnya tetapi dipotong agar lebih ringkas atau menghindari teks yang terlalu panjang. Sementara itu, catchError berfungsi menangkap dan menangani error yang mungkin terjadi ketika proses getData dijalankan, misalnya ketika koneksi gagal atau server tidak merespons. Jika terjadi error, blok catchError akan men-set nilai result menjadi pesan “An error occurred” sehingga aplikasi tetap memberikan keluaran yang jelas dan tidak crash, kemudian memanggil setState untuk memperbarui tampilan sesuai kondisi tersebut.
+
+![alt text](<images/hasil 1.gif>)

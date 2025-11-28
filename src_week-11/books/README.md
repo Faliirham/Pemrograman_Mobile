@@ -108,3 +108,16 @@ Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan co
 ```
 
 ![alt text](<images/hasil 5.gif>)
+
+### Langkah 4: : Ganti variabel futureGroup
+
+![alt text](images/code7.png)
+
+```
+Soal 8
+Jelaskan maksud perbedaan kode langkah 1 dan 4!
+```
+
+**Penjelasan :** Perbedaan antara langkah 1 dan langkah 4 terletak pada cara keduanya menjalankan beberapa future sekaligus serta bagaimana hasil akhirnya diproses. Pada langkah 1, kode menggunakan FutureGroup, yaitu mekanisme yang mengumpulkan beberapa future secara bertahap, menutup grup dengan close, lalu menunggu semua future selesai sebelum memberikan daftar hasil. Setelah semua nilai diterima, kode melakukan perulangan manual untuk menjumlahkan seluruh elemen dan menampilkannya melalui setState. Struktur ini lebih panjang karena FutureGroup bekerja seperti “keranjang future” yang dapat ditambahkan satu per satu sebelum ditutup.
+
+Sebaliknya, pada langkah 4 digunakan Future.wait yang merupakan cara lebih ringkas dan langsung untuk menjalankan beberapa future secara paralel. Future.wait menerima list future dan mengembalikan sebuah future baru yang selesai ketika semua future di dalamnya selesai, serta menghasilkan list nilai yang urut sesuai posisi future yang diberikan. Dengan kata lain, Future.wait memberikan fungsi yang sama seperti FutureGroup tetapi dengan penulisan jauh lebih sederhana dan tanpa perlu langkah tambahan seperti close atau pengaturan grup. Pada kode langkah 4, nilai hasil dari Future.wait belum diproses, tetapi intinya mekanisme ini menggantikan seluruh proses FutureGroup dengan satu baris yang lebih efisien.

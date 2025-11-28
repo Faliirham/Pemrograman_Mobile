@@ -89,20 +89,26 @@ class _FuturePageState extends State<Futurepage> {
   }
 
   void returnFG (){
-    FutureGroup<int> futureGroup = FutureGroup<int>();
-    futureGroup.add(returnOneAsync());
-    futureGroup.add(returnTwoAsync());
-    futureGroup.add(returnThreeAsync());
-    futureGroup.close();
-    futureGroup.future.then((List <int> values) {
-      int total = 0;
-      for (var element in values) {
-        total += element;
-      }
-      setState(() {
-        result = total.toString();
-      });
-    });
+    // FutureGroup<int> futureGroup = FutureGroup<int>();
+    // futureGroup.add(returnOneAsync());
+    // futureGroup.add(returnTwoAsync());
+    // futureGroup.add(returnThreeAsync());
+    // futureGroup.close();
+    // futureGroup.future.then((List <int> values) {
+    //   int total = 0;
+    //   for (var element in values) {
+    //     total += element;
+    //   }
+    //   setState(() {
+    //     result = total.toString();
+    //   });
+    // });
+
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
   }
   @override
   Widget build(BuildContext context) {

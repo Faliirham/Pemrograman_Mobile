@@ -11,20 +11,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:master_plan/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('App shows Master Plans creator screen', (WidgetTester tester) async {
+    await tester.pumpWidget(const MasterPlanApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify the creator screen title is present
+    expect(find.text('Master Plans Fali'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify the TextField to add a plan exists
+    expect(find.byType(TextField), findsOneWidget);
   });
 }

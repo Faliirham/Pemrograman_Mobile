@@ -88,6 +88,11 @@ class _FuturePageState extends State<Futurepage> {
     }
   }
 
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened');
+  }
+
   void returnFG (){
     // FutureGroup<int> futureGroup = FutureGroup<int>();
     // futureGroup.add(returnOneAsync());
@@ -136,8 +141,21 @@ class _FuturePageState extends State<Futurepage> {
               // onPressed: () {
               //   count();
               // },
-               onPressed: () {
-                returnFG();
+              onPressed: () {
+                returnError()
+                    .then((value) {
+                      setState(() {
+                        result = 'Success';
+                      });
+                    })
+                    .catchError((onError) {
+                      setState(() {
+                        result = onError.toString();
+                      });
+                    })
+                    .whenComplete(() {
+                      print('Future is complete');
+                    });
               },
             ),
             const Spacer(),

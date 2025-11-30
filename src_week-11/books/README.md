@@ -216,5 +216,19 @@ Ya, terdapat perbedaan tampilan UI dibandingkan praktikum sebelumnya. Pada prakt
 
 ![alt text](<images/hasil 10.gif>)
 
+### Langkah 5: Tambah handling error
 
+- **geolocation.dart :**
 
+![alt text](images/code14.png)
+
+```
+Soal 14
+- Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 14".
+```
+**Penjelasan :**
+
+menampilkan hasil lokasi ketika Future selesai dijalankan, tanpa mempertimbangkan kemungkinan terjadinya error. Setelah penambahan blok pengecekan snapshot.hasError, FutureBuilder kini mampu menampilkan pesan error secara eksplisit ketika terjadi kegagalan dalam proses pengambilan lokasi. Perubahan ini membuat UI lebih informatif dan responsif karena pengguna dapat mengetahui apakah kegagalan terjadi akibat izin lokasi ditolak, layanan lokasi dimatikan, atau ada kendala lain. Dengan adanya penanganan error ini, tampilan UI menjadi sedikit berbeda, karena kini dapat menampilkan teks khusus ketika terjadi masalah, bukan hanya loading atau data yang berhasil diperoleh.
+
+![alt text](<images/hasil 10.gif>)

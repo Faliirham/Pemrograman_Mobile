@@ -1,16 +1,28 @@
-# stream_fali
+# Pemrograman Mobile - Pertemuan 12
 
-A new Flutter project.
+**NIM: 2341720121**
 
-## Getting Started
+**NAMA: FALI IRHAM MAULANA**
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## **Praktikum 1: Dart Streams**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Langkah 1 - 6 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **main.dart :**
+
+![alt text](images/code1.png)
+
+- **stream.dart :**
+
+![alt text](images/code.png)
+
+```
+Soal 3
+- Jelaskan fungsi keyword yield* pada kode tersebut!
+- Apa maksud isi perintah kode tersebut?
+- Lakukan commit hasil jawaban Soal 3 dengan pesan "W12: Jawaban Soal 3"
+```
+
+**Penjelasan :** Kode tersebut mendefinisikan sebuah fungsi getColorStream() yang menghasilkan stream warna secara periodik menggunakan Stream.periodic. Keyword yield* pada kode ini berfungsi untuk menyalurkan semua nilai yang dihasilkan oleh stream lain—dalam hal ini Stream.periodic—ke dalam stream yang sedang dibuat, sehingga setiap nilai dari Stream.periodic akan diteruskan ke stream getColorStream. Stream.periodic sendiri membuat sebuah stream yang memancarkan nilai secara berkala, di sini setiap satu detik. Fungsi callback (int t) menghitung indeks warna berdasarkan sisa bagi dari t dengan panjang daftar warna, sehingga warna yang dikembalikan dari list colors akan berulang secara melingkar. Dengan demikian, fungsi ini menghasilkan aliran warna yang berganti setiap detik sesuai urutan daftar colors dan terus berulang tanpa henti.

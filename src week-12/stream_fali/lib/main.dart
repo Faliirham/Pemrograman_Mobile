@@ -48,21 +48,34 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   void addRandomNumber() {
     Random random = Random();
-    int MyNum = random.nextInt(10);
-    numberStream.addNumberToSink(MyNum);
+    int myNum = random.nextInt(10);
+    numberStream.addNumberToSink(myNum);
+    // numberStream.addError();
   }
 
   @override
   void initState() {
+    super.initState();
+
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
     Stream stream = numberStreamController.stream;
-    stream.listen((event) {
-      setState(() {
-        lastNumber = event;
-      });
-    });
-    super.initState();
+
+    stream.listen(
+      (event) {
+        setState(() {
+          lastNumber = event;
+        });
+      },
+      onError: (error) {
+        setState(() {
+          lastNumber = -1;
+        });
+      },
+    );
+
+    // Memulai perubahan warna
+    changeColor();
   }
 
   @override
@@ -80,19 +93,19 @@ class _StreamHomePageState extends State<StreamHomePage> {
       body: SizedBox(
         width: double.infinity,
         child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(lastNumber.toString()),
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 addRandomNumber();
               },
-              child: Text('New Random Number'),
-            )
+              child: const Text('New Random Number'),
+            ),
           ],
         ),
-      )
+      ),
     );
   }
 }

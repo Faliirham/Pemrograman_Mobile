@@ -76,3 +76,26 @@ Soal 6
 Sedangkan pada langkah 10, di initState(), kode membuat instance NumberStream dan mengambil controller-nya. Lalu, melalui stream.listen(...), setiap event yang dikirim ke stream dipantau, dan ketika ada event baru, fungsi setState() dipanggil untuk memperbarui variabel lastNumber dengan nilai terbaru dari stream. Dengan begitu, widget yang menampilkan angka (Text(lastNumber.toString())) akan otomatis diperbarui setiap kali angka baru ditambahkan ke stream. Secara keseluruhan, langkah 8 bertugas mengirim angka baru ke stream, sedangkan langkah 10 bertugas mendengarkan stream dan memperbarui UI saat ada angka baru.
 
 ![alt text](<images/hasil 2.gif>)
+
+### Langkah 13 - 15 
+
+- **stream.dart :**
+
+![alt text](images/code6.png)
+
+- **main.dart :**
+
+![alt text](images/code7.png)
+
+```
+Soal 7
+- Jelaskan maksud kode langkah 13 sampai 15 tersebut!
+- Kembalikan kode seperti semula pada Langkah 15, comment addError() agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 7".
+```
+
+**Penjelasan :** Kode pada langkah 13 sampai 15 berkaitan dengan bagaimana angka baru atau error dikirim ke stream dan diterima oleh aplikasi untuk memperbarui UI. Pada langkah 13, fungsi addRandomNumber() digunakan untuk menambahkan event baru ke dalam stream. Dalam kode ini, fungsi memanggil numberStream.addError(), yang artinya setiap kali tombol ditekan, sebuah error dikirim ke stream alih-alih angka acak. Fungsi ini sebelumnya juga bisa digunakan untuk menambahkan angka acak ke stream menggunakan addNumberToSink(), tetapi saat ini bagian itu dikomentari.
+
+Pada langkah 14, di initState(), stream diinisialisasi dengan membuat instance NumberStream dan mengambil controller-nya. Stream tersebut kemudian didengarkan menggunakan stream.listen(...), sehingga setiap event yang diterima—baik angka maupun error—akan diproses. Ketika event normal diterima, variabel lastNumber diperbarui dengan angka tersebut, sedangkan jika terjadi error, variabel lastNumber diatur menjadi -1.
+
+Langkah 15 berada pada build(), di mana widget menampilkan nilai lastNumber pada Text dan menyediakan ElevatedButton untuk memicu fungsi addRandomNumber(). Dengan demikian, UI akan selalu menampilkan angka terakhir dari stream, atau -1 jika terjadi error, dan pengguna dapat memicu event baru melalui tombol. Secara keseluruhan, ketiga langkah ini menunjukkan alur lengkap: mengirim data ke stream, mendengarkan stream, dan memperbarui UI secara real-time.

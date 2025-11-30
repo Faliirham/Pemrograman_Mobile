@@ -232,3 +232,6 @@ Soal 14
 menampilkan hasil lokasi ketika Future selesai dijalankan, tanpa mempertimbangkan kemungkinan terjadinya error. Setelah penambahan blok pengecekan snapshot.hasError, FutureBuilder kini mampu menampilkan pesan error secara eksplisit ketika terjadi kegagalan dalam proses pengambilan lokasi. Perubahan ini membuat UI lebih informatif dan responsif karena pengguna dapat mengetahui apakah kegagalan terjadi akibat izin lokasi ditolak, layanan lokasi dimatikan, atau ada kendala lain. Dengan adanya penanganan error ini, tampilan UI menjadi sedikit berbeda, karena kini dapat menampilkan teks khusus ketika terjadi masalah, bukan hanya loading atau data yang berhasil diperoleh.
 
 ![alt text](<images/hasil 10.gif>)
+
+## **Praktikum 8: Navigation route dengan Future Function**
+

@@ -235,3 +235,22 @@ menampilkan hasil lokasi ketika Future selesai dijalankan, tanpa mempertimbangka
 
 ## **Praktikum 8: Navigation route dengan Future Function**
 
+### Langkah 1 - 8 : 
+
+- **navigation_first.dart :**
+
+![alt text](images/code15.png)
+
+- **navigation_second.dart :**
+
+![alt text](images/code16.png)
+
+```
+Soal 16
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+- Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 16".
+```
+**Penjelasan :** Ketika mengklik salah satu tombol di layar, aplikasi akan langsung menutup layar tersebut dan mengirimkan warna (Color) yang dipilih kembali ke layar sebelumnya melalui Navigator.pop(context, color). Misalnya, jika menekan tombol “Red”, layar kedua akan menutup dan mengirimkan Colors.red.shade700 ke layar pertama. Hal ini terjadi karena setiap tombol memanggil Navigator.pop dengan nilai warna sebagai argumen, sehingga nilai tersebut bisa diterima dan digunakan oleh layar yang memanggil NavigationSecond. Dengan kata lain, tombol tidak hanya memicu perubahan internal, tetapi juga mengembalikan data ke layar sebelumnya, sehingga UI di layar pertama bisa diperbarui sesuai warna yang dipilih.
+
+![alt text](<images/hasil 11.gif>)

@@ -142,3 +142,34 @@ Soal 9
 
 ![alt text](image.png)
 
+## **Praktikum 5: Multiple stream subscriptions :**
+
+### Langkah 1 - 3 
+
+- **main.dart :**
+
+![alt text](images/code10.png)
+
+```
+Soal 10
+Jelaskan mengapa error itu bisa terjadi ?
+
+```
+**Penjelasan :** Error “Bad state: Stream has already been listened to” terjadi karena stream yang  gunakan berasal dari StreamController biasa yang secara default bersifat single-subscription, artinya hanya boleh memiliki satu pendengar (listener). Namun pada kode yang  tulis di initState(),  memanggil stream.listen() sebanyak dua kali, yaitu pada subscription dan subscription2. Ketika pemanggilan pertama dilakukan, stream masih dalam keadaan valid untuk didengarkan. Tetapi pada pemanggilan kedua, Flutter mendeteksi bahwa stream tersebut sudah memiliki satu listener aktif, sehingga tidak diizinkan menambahkan listener berikutnya. Karena aturan dasar dari single-subscription stream adalah hanya satu listener yang diperbolehkan, maka percobaan listen kedua dianggap melanggar aturan dan Flutter langsung melempar error tersebut. Inilah alasan mengapa layar berubah merah dan pesan tersebut muncul. Untuk menghindarinya,  perlu menggunakan broadcast stream jika memang ingin lebih dari satu listener, atau cukup gunakan satu listener saja bila tidak diperlukan lebih.
+
+### Langkah 4 - 6 
+
+- **main.dart :**
+
+![alt text](images/code11.png)
+
+```
+Soal 11
+- Jelaskan mengapa hal itu bisa terjadi ?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 10,11".
+```
+
+**Penjelasan :** Hal itu bisa terjadi karena pada percobaan sebelumnya  mencoba menambahkan dua listener pada satu stream yang berasal dari StreamController biasa, sementara controller tersebut hanya mendukung satu listener. Ketika listener kedua ditambahkan, Flutter langsung memunculkan error “Bad state: Stream has already been listened to” karena stream tersebut adalah single-subscription stream. Setelah itu  mengubah stream tersebut menjadi broadcast stream menggunakan .asBroadcastStream(), dan perubahan itu membuat stream mampu memiliki lebih dari satu listener secara bersamaan. Broadcast stream memang dirancang agar bisa disubscribe oleh banyak pendengar dalam waktu yang sama, sehingga kedua listener—subscription dan subscription2—dapat menerima event yang sama tanpa memicu error. Dengan kata lain, error awal muncul karena keterbatasan single-subscription stream, sedangkan setelah diubah menjadi broadcast stream, percobaan dua listener bisa berjalan normal karena sifat broadcast yang memungkinkan banyak pendengar mengakses event dari satu aliran data.
+
+![alt text](<images/hasil 5.gif>)

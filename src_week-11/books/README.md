@@ -254,3 +254,38 @@ Soal 16
 **Penjelasan :** Ketika mengklik salah satu tombol di layar, aplikasi akan langsung menutup layar tersebut dan mengirimkan warna (Color) yang dipilih kembali ke layar sebelumnya melalui Navigator.pop(context, color). Misalnya, jika menekan tombol “Red”, layar kedua akan menutup dan mengirimkan Colors.red.shade700 ke layar pertama. Hal ini terjadi karena setiap tombol memanggil Navigator.pop dengan nilai warna sebagai argumen, sehingga nilai tersebut bisa diterima dan digunakan oleh layar yang memanggil NavigationSecond. Dengan kata lain, tombol tidak hanya memicu perubahan internal, tetapi juga mengembalikan data ke layar sebelumnya, sehingga UI di layar pertama bisa diperbarui sesuai warna yang dipilih.
 
 ![alt text](<images/hasil 11.gif>)
+
+## **Praktikum 9: Memanfaatkan async/await dengan Widget Dialog**
+
+### Langkah 1 - 6 
+
+- **navigation_dialog.dart :**
+
+![alt text](images/code17.png)
+
+```
+Soal 17
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+- Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 17".
+```
+**Penjelasan :** Ketika menekan tombol “Change Color”, sebuah AlertDialog akan muncul meminta memilih warna: Red, Green, atau Blue. Jika kemudian menemun salah satu tombol warna di dialog, beberapa hal terjadi secara berurutan:
+
+State diubah: Fungsi setState() di dalam tombol dijalankan sehingga variabel color di state diubah sesuai warna yang dipilih. Misalnya, jika tombol “Red” ditekan, color = Colors.red.shade700.
+
+Dialog ditutup: Navigator.pop(context, color) menutup dialog dan mengembalikan nilai color sebagai hasil dialog (walaupun nilai itu tidak digunakan di layar ini, tapi tetap dikembalikan ke Future dari showDialog).
+
+UI dibangun ulang: Karena setState() dipanggil, Flutter melakukan rebuild widget Scaffold, sehingga properti backgroundColor yang menggunakan variabel color diperbarui. Akibatnya, latar belakang layar berubah menjadi warna yang dipilih.
+
+Dengan kata lain, setiap tombol tidak hanya menutup dialog, tetapi juga memperbarui state color, yang kemudian memicu perubahan warna latar belakang layar. Itulah sebabnya setelah menekan tombol Red, Green, atau Blue, warna layar langsung berubah sesuai pilihan.
+
+
+![alt text](<images/hasil 12.gif>)
+
+**Perubahan warna sesuai selera :**
+
+![alt text](images/code18.png)
+
+![alt text](<images/hasil 13.gif>)
+
+

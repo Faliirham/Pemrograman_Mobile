@@ -99,3 +99,22 @@ Soal 7
 Pada langkah 14, di initState(), stream diinisialisasi dengan membuat instance NumberStream dan mengambil controller-nya. Stream tersebut kemudian didengarkan menggunakan stream.listen(...), sehingga setiap event yang diterima—baik angka maupun error—akan diproses. Ketika event normal diterima, variabel lastNumber diperbarui dengan angka tersebut, sedangkan jika terjadi error, variabel lastNumber diatur menjadi -1.
 
 Langkah 15 berada pada build(), di mana widget menampilkan nilai lastNumber pada Text dan menyediakan ElevatedButton untuk memicu fungsi addRandomNumber(). Dengan demikian, UI akan selalu menampilkan angka terakhir dari stream, atau -1 jika terjadi error, dan pengguna dapat memicu event baru melalui tombol. Secara keseluruhan, ketiga langkah ini menunjukkan alur lengkap: mengirim data ke stream, mendengarkan stream, dan memperbarui UI secara real-time.
+
+## **Praktikum 3: Injeksi data ke streams**
+
+### Langkah 1 - 4 
+
+- **main.dart :**
+
+![alt text](images/code8.png)
+
+```
+Soal 8
+- Jelaskan maksud kode langkah 1-3 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+Lalu lakukan commit dengan pesan "W12: Jawaban Soal 8".
+```
+
+**Penjelasan :** Pada langkah 1–3 bekerja untuk menyiapkan sebuah alur stream yang datanya akan diolah terlebih dahulu sebelum ditampilkan ke UI. Pada langkah pertama, sebuah variabel bernama transformer ditambahkan ke dalam kelas _StreamHomePageState untuk menampung objek StreamTransformer yang nantinya berfungsi memodifikasi data yang lewat di dalam stream. Pada langkah kedua, variabel tersebut diinisialisasi di dalam initState menggunakan StreamTransformer.fromHandlers, yaitu mekanisme yang memungkinkan setiap data yang masuk ke stream diolah terlebih dahulu. Di bagian ini, setiap data yang diterima akan dikalikan sepuluh sebelum diteruskan, lalu jika terjadi error, transformer akan mengirim nilai -1, dan ketika stream selesai, sink akan ditutup. Pada langkah ketiga, stream yang sudah ada dihubungkan dengan transformer menggunakan stream.transform(transformer) lalu didengarkan dengan listen. Setiap data hasil transformasi kemudian disimpan ke variabel lastNumber menggunakan setState agar UI memperbarui tampilan sesuai nilai terbaru, dan jika terjadi error, nilai -1 ditampilkan sebagai tanda kesalahan. Dengan demikian, ketiga langkah ini membentuk alur lengkap mulai dari menyiapkan transformer, mengatur cara data diproses, hingga menerapkannya ke stream untuk ditampilkan ke antarmuka aplikasi.
+
+![alt text](<images/hasil 3.gif>)

@@ -52,3 +52,27 @@ Lakukan commit hasil jawaban Soal 5 dengan pesan "W12: Jawaban Soal 5"
 ```
 
 Perbedaan antara listen dan await for pada stream terletak pada cara mereka menangani event yang dipancarkan oleh stream. Pada await for, setiap event stream diproses secara asinkron dalam sebuah loop, sehingga eksekusi kode bersifat sekuensial dan menunggu setiap event sebelum melanjutkan ke langkah berikutnya. Hal ini membuat aliran data lebih mudah diikuti karena terlihat seperti loop biasa, tetapi kode setelah await for tidak akan dijalankan sampai stream selesai atau dihentikan. Sementara itu, listen mendaftarkan sebuah callback yang dipanggil setiap kali stream memancarkan event, dengan eksekusi bersifat non-blok, sehingga kode setelah listen langsung dijalankan tanpa menunggu event. listen juga memberikan fleksibilitas lebih, misalnya untuk membatalkan langganan stream kapan saja. Secara singkat, await for lebih cocok untuk menangani event secara linear dan berurutan, sedangkan listen lebih cocok untuk menangani event secara asynchronous tanpa menghentikan eksekusi kode lain.
+
+## **Praktikum 2: Stream controllers dan sinks**
+
+### Langkah 1 - 12
+
+- **stream.dart :**
+
+![alt text](images/code4.png)
+
+- **main.dart :**
+
+![alt text](images/code5.png)
+```
+Soal 6
+- Jelaskan maksud kode langkah 8 dan 10 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 6"
+```
+
+**Penjelasana :** Pada langkah 8, metode addRandomNumber() membuat sebuah angka acak antara 0 sampai 9 menggunakan Random().nextInt(10) lalu mengirim angka tersebut ke sink dari stream numberStream melalui addNumberToSink(). Ini berarti setiap kali fungsi ini dipanggil (misalnya saat tombol ditekan), sebuah event baru berupa angka acak dikirim ke stream, yang nantinya akan diterima oleh listener untuk memperbarui UI.
+
+Sedangkan pada langkah 10, di initState(), kode membuat instance NumberStream dan mengambil controller-nya. Lalu, melalui stream.listen(...), setiap event yang dikirim ke stream dipantau, dan ketika ada event baru, fungsi setState() dipanggil untuk memperbarui variabel lastNumber dengan nilai terbaru dari stream. Dengan begitu, widget yang menampilkan angka (Text(lastNumber.toString())) akan otomatis diperbarui setiap kali angka baru ditambahkan ke stream. Secara keseluruhan, langkah 8 bertugas mengirim angka baru ke stream, sedangkan langkah 10 bertugas mendengarkan stream dan memperbarui UI saat ada angka baru.
+
+![alt text](<images/hasil 2.gif>)

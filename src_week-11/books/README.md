@@ -148,3 +148,25 @@ Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya?
 Langkah 4, yaitu fungsi handleError(), menggunakan struktur try–catch–finally di dalam fungsi asynchronous itu sendiri. Penanganan error dilakukan secara internal sehingga alur lebih terpusat dan mirip gaya pemrograman sinkron. Ketika error terjadi, ia langsung tertangkap di dalam blok catch dan UI diperbarui melalui setState. Bagian finally memastikan kode tertentu tetap dijalankan setelah try maupun catch selesai.
 
 ![alt text](<images/hasil 7.gif>)
+
+## **Praktikum 6: Menggunakan Future dengan StatefulWidget**
+
+### Langkah 1: install plugin geolocator
+
+![alt text](image-3.png)
+
+### Langkah 2: Tambah permission GPS
+
+![alt text](image-4.png)
+
+### Langkah 3 - 7 : 
+
+- **geolocation.dart :**
+
+![alt text](images/code10.png)
+
+- **main.dart**
+
+![alt text](images/code11.png)
+
+x

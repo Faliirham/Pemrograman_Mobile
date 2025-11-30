@@ -195,3 +195,26 @@ Soal 12
 
 ![alt text](<images/hasil 9.gif>)
 
+## **Praktikum 7: Manajemen Future dengan FutureBuilder**
+
+### Langkah 1 - 4 : 
+
+- **geolocation.dart :**
+
+![alt text](images/code13.png)
+
+```
+Soal 13
+- Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 13".
+- Seperti yang Anda lihat, menggunakan FutureBuilder lebih efisien, clean, dan reactive dengan Future bersama UI.
+```
+
+**Penjelasan :**
+
+Ya, terdapat perbedaan tampilan UI dibandingkan praktikum sebelumnya. Pada praktikum sebelumnya, antarmuka langsung menampilkan teks berisi koordinat setelah proses pengambilan lokasi selesai dan setState() dipanggil, sehingga perubahan UI terjadi secara sederhana tanpa menampilkan status proses yang sedang berlangsung. Sementara itu, pada kode saat ini, UI menggunakan FutureBuilder yang membangun ulang tampilan berdasarkan status proses asynchronous. Akibatnya, sebelum lokasi berhasil diperoleh, pengguna melihat indikator loading terlebih dahulu, dan setelah proses selesai barulah koordinat ditampilkan. Perbedaan pendekatan dalam menangani data asynchronous inilah yang membuat UI tampak berbeda, meskipun fungsionalitas utama tetap sama.
+
+![alt text](<images/hasil 10.gif>)
+
+
+

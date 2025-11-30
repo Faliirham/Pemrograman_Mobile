@@ -25,12 +25,16 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final myWidget = myPosition == ' '
+        ? const CircularProgressIndicator()
+        : Text(myPosition);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Fali - Current Location'),
       ),
       body: Center(
-        child: Text(myPosition),
+        child: myWidget,
       ),
     );
   }

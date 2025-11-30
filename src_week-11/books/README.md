@@ -169,4 +169,29 @@ Langkah 4, yaitu fungsi handleError(), menggunakan struktur try–catch–finall
 
 ![alt text](images/code11.png)
 
-x
+- **Output :**
+
+![alt text](<images/hasil 8.gif>)
+
+### Langkah 8: Tambahkan animasi loading 
+
+- **geolocation.dart :**
+
+![alt text](images/code12.png)
+
+```
+Soal 12
+- Jika Anda tidak melihat animasi loading tampil, kemungkinan itu berjalan sangat cepat. Tambahkan delay pada method getPosition() dengan kode await Future.delayed(const Duration(seconds: 3));
+- Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".
+```
+
+**Jawaban :**
+
+![alt text](image-5.png)
+
+ aplikasi Flutter yang dijalankan melalui browser Chrome dapat memperoleh koordinat lokasi, tetapi mekanismenya berbeda dari aplikasi mobile. Pada Flutter Web, lokasi tidak diambil langsung dari sensor GPS perangkat, melainkan melalui Browser Geolocation API. Setelah  memberikan permission pada Chrome—biasanya berupa pop-up “Allow this site to access your location?”—browser akan mengizinkan aplikasi mengakses lokasi. Namun, lokasi yang diberikan oleh browser umumnya tidak seakurat GPS karena bersumber dari jaringan WiFi, alamat IP, atau data lokasi kasar yang tersedia pada perangkat. Selain itu, fitur geolokasi di browser hanya berfungsi jika aplikasi dijalankan melalui HTTPS atau http://localhost
+, sehingga menjalankan Flutter dengan flutter run -d chrome tetap memungkinkan akses lokasi. Dengan demikian, meskipun permission sudah diberikan dan aplikasi berjalan normal, akurasi lokasi di Chrome mungkin tidak setinggi ketika aplikasi dijalankan di perangkat Android atau iOS yang menggunakan sensor GPS bawaan.
+
+![alt text](<images/hasil 9.gif>)
+

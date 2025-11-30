@@ -118,3 +118,27 @@ Lalu lakukan commit dengan pesan "W12: Jawaban Soal 8".
 **Penjelasan :** Pada langkah 1–3 bekerja untuk menyiapkan sebuah alur stream yang datanya akan diolah terlebih dahulu sebelum ditampilkan ke UI. Pada langkah pertama, sebuah variabel bernama transformer ditambahkan ke dalam kelas _StreamHomePageState untuk menampung objek StreamTransformer yang nantinya berfungsi memodifikasi data yang lewat di dalam stream. Pada langkah kedua, variabel tersebut diinisialisasi di dalam initState menggunakan StreamTransformer.fromHandlers, yaitu mekanisme yang memungkinkan setiap data yang masuk ke stream diolah terlebih dahulu. Di bagian ini, setiap data yang diterima akan dikalikan sepuluh sebelum diteruskan, lalu jika terjadi error, transformer akan mengirim nilai -1, dan ketika stream selesai, sink akan ditutup. Pada langkah ketiga, stream yang sudah ada dihubungkan dengan transformer menggunakan stream.transform(transformer) lalu didengarkan dengan listen. Setiap data hasil transformasi kemudian disimpan ke variabel lastNumber menggunakan setState agar UI memperbarui tampilan sesuai nilai terbaru, dan jika terjadi error, nilai -1 ditampilkan sebagai tanda kesalahan. Dengan demikian, ketiga langkah ini membentuk alur lengkap mulai dari menyiapkan transformer, mengatur cara data diproses, hingga menerapkannya ke stream untuk ditampilkan ke antarmuka aplikasi.
 
 ![alt text](<images/hasil 3.gif>)
+
+## **Praktikum 4: Subscribe ke stream events**
+
+### Langkah 1 - 10
+
+- **main.dart :**
+
+![alt text](images/code9.png)
+
+```
+Soal 9
+- Jelaskan maksud kode langkah 2, 6 dan 8 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 9".
+```
+
+**Penjelasan :** Pada langkah kedua, kode tersebut membuat sebuah stream dari numberStreamController dan memasang listener melalui subscription untuk memantau setiap data baru yang masuk. Setiap nilai yang diterima dari stream langsung digunakan untuk memperbarui variabel lastNumber melalui setState, sehingga tampilan UI berubah sesuai angka terbaru. Pada langkah keenam, metode dispose() dipanggil ketika widget dihapus dari tree, dan di dalamnya listener stream dibatalkan menggunakan subscription.cancel(). Tindakan ini diperlukan agar tidak ada proses yang tetap berjalan di background setelah halaman tidak digunakan lagi, sehingga mencegah memory leak atau error karena pembaruan UI yang mencoba berjalan padahal widget sudah tidak aktif. Pada langkah kedelapan, fungsi addRandomNumber() bertugas menghasilkan angka acak antara 0 sampai 9, kemudian mengirim angka tersebut ke stream melalui numberStream.addNumberToSink(myNum) selama controller belum ditutup. Jika controller sudah ditutup, kode menetapkan nilai -1 ke lastNumber sebagai penanda bahwa pengiriman data tidak bisa dilakukan lagi. Dengan alur ini, tiga langkah tersebut bekerja bersama untuk menghasilkan angka random, mengirimnya ke stream, menampilkan hasilnya di UI, dan memastikan proses dihentikan dengan benar ketika widget sudah tidak digunakan.
+
+![alt text](<images/hasil 4.gif>)
+
+***Console ketika stop subscribtion ditekan :***
+
+![alt text](image.png)
+

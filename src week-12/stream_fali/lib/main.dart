@@ -32,49 +32,36 @@ class StreamHomePage extends StatefulWidget {
 
 class _StreamHomePageState extends State<StreamHomePage> {
   int lastNumber = 0;
-  late StreamController numberStreamController;
+  late StreamController<int> numberStreamController;
   late NumberStream numberStream;
-  late StreamTransformer<int, int> streamTransformer;
-
-  Color bgColor = Colors.blueGrey;
-  late ColorStream colorStream = ColorStream();
-
-  void changeColor() async {
-    colorStream.getColorStream().listen((eventColor) {
-      setState(() {
-        bgColor = eventColor;
-      });
-    });
-  }
+  late StreamSubscription<int> subscription;
 
   void addRandomNumber() {
     Random random = Random();
     int myNum = random.nextInt(10);
-    numberStream.addNumberToSink(myNum);
-    // numberStream.addError();
+    
+    if (!numberStreamController.isClosed) {
+      numberStream.addNumberToSink(myNum);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Stream sudah ditutup!')),
+      );
+    }
+  }
+
+  void stopStream() {
+    if (!numberStreamController.isClosed) {
+      numberStreamController.close();
+    }
   }
 
   @override
   void initState() {
     super.initState();
-
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
-    Stream<int> stream = numberStreamController.stream.cast();
-
-    // StreamTransformer untuk menangani error
-    streamTransformer = StreamTransformer<int, int>.fromHandlers(
-      handleData: (value, sink) {
-        sink.add(value * 10);
-      },
-      handleError: (error, stackTrace, sink) {
-        sink.add(-1); // jika terjadi error, kirim -1
-      },
-      handleDone: (sink) => sink.close(),
-    );
-
-    // Listener setelah transform
-    stream.transform(streamTransformer).listen(
+    
+    subscription = numberStreamController.stream.listen(
       (event) {
         setState(() {
           lastNumber = event;
@@ -85,15 +72,18 @@ class _StreamHomePageState extends State<StreamHomePage> {
           lastNumber = -1;
         });
       },
+      onDone: () {
+        print('OnDone was called');
+      },
     );
-
-    // Memulai perubahan warna
-    changeColor();
   }
 
   @override
   void dispose() {
-    numberStream.close();
+    subscription.cancel();
+    if (!numberStreamController.isClosed) {
+      numberStreamController.close();
+    }
     super.dispose();
   }
 
@@ -109,12 +99,17 @@ class _StreamHomePageState extends State<StreamHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(lastNumber.toString()),
+            Text(
+              lastNumber.toString(),
+              style: const TextStyle(fontSize: 48),
+            ),
             ElevatedButton(
-              onPressed: () {
-                addRandomNumber();
-              },
+              onPressed: numberStreamController.isClosed ? null : addRandomNumber,
               child: const Text('New Random Number'),
+            ),
+            ElevatedButton(
+              onPressed: numberStreamController.isClosed ? null : stopStream,
+              child: const Text('Stop Subscription'),
             ),
           ],
         ),

@@ -42,4 +42,29 @@ Soal 3
 - Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 3"
 ```
 
-![alt text](images/images1.jpg)
+![alt text](images/images1.jpg)x    
+
+### Langkah 23 - 26
+
+- **main.dart :** 
+
+![alt text](images/code4.png)
+
+- **model/pizza.dart :** 
+
+![alt text](images/code5.png)
+
+## **Praktikum 2: Handle kompatibilitas data JSON**
+
+### Langkah 1 - 11
+
+- **model/pizza.dart :** 
+
+![alt text](images/code6.png)
+
+```
+Soal 4
+- Capture hasil running aplikasi Anda, kemudian impor ke laporan praktikum Anda!
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 4"
+```
+![alt text](images/images2.jpg)

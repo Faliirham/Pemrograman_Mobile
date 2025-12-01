@@ -62,3 +62,33 @@ Soal 2
 ```
 
 ![alt text](<images/hasil 1.gif>)
+
+## **Praktikum 3: Memperbarui Data di Web Service (PUT)**
+
+### Langkah 1 - 11
+
+- **Mockup API :**
+
+![alt text](images/image-4.png)
+
+
+- **main.dart :**
+
+![alt text](images/code5.png)
+
+- **httphelper.dart:**
+
+![alt text](images/code6.png)
+
+- **pizza_detail.dart :**
+
+![alt text](images/code7.png)
+
+
+```
+Soal 3
+- Ubah salah satu data dengan Nama dan NIM Anda, lalu perhatikan hasilnya di Wiremock.
+- Capture hasil aplikasi Anda berupa GIF di README dan lakukan commit hasil jawaban Soal 3 dengan pesan "W14: Jawaban Soal 3"
+```
+
+![alt text](<images/hasil 2.gif>)

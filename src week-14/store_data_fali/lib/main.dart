@@ -36,30 +36,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final pwdController = TextEditingController();
-  String myPass = '';
   final storage = const FlutterSecureStorage();
-  final myKey = "myPass";
+  final String myKey = "myPass";
+
   late File myFile;
   String fileText = '';
   String documentsPath = '';
   String tempPath = '';
   int appCounter = 0;
-  List<Pizza> myPizzas = [];
 
+  // Call API pizzas
   Future<List<Pizza>> callPizzas() async {
-    HttpHelper helper = HttpHelper(); 
-    List<Pizza> pizzas = await helper.getPizzaList(); 
-  return pizzas; 
-} 
+    HttpHelper helper = HttpHelper();
+    return await helper.getPizzaList();
+  }
 
   Future writeToSecureStorage() async {
     await storage.write(key: myKey, value: pwdController.text);
   }
 
   Future<String> readFromSecureData() async {
-    String secret = await storage.read(key: myKey) ?? '';
-  
-    return secret;
+    return await storage.read(key: myKey) ?? '';
   }
 
   Future<bool> writeFile() async {
@@ -74,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<bool> readFile() async {
     try {
       String fileContent = await myFile.readAsString();
-      setState(() {
-        fileText = fileContent;
-      });
+      setState(() => fileText = fileContent);
       return true;
     } catch (e) {
       return false;
@@ -84,18 +79,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<Pizza>> readJsonFile() async {
-    String myString = await DefaultAssetBundle.of(context)
-        .loadString('assets/pizzalist.json');
+    String myString =
+        await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
     List pizzaMapList = jsonDecode(myString);
-    
-    List<Pizza> myPizzas = [];
-    for (var pizza in pizzaMapList) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      myPizzas.add(myPizza);
-    }
-    
+
+    List<Pizza> myPizzas =
+        pizzaMapList.map((json) => Pizza.fromJson(json)).toList();
+
     String json = convertToJson(myPizzas);
     print(json);
+
     return myPizzas;
   }
 
@@ -103,24 +96,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
   }
 
-  Future<void> readAndWritepreference() async {
+  Future<void> readAndWritePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    appCounter = (prefs.getInt('counter') ?? 0);
-    appCounter++;
-
+    appCounter = (prefs.getInt('counter') ?? 0) + 1;
     await prefs.setInt('counter', appCounter);
 
-    setState(() {
-      appCounter = appCounter;
-    });
+    setState(() {});
   }
 
   Future deletePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-    setState(() {
-      appCounter = 0;
-    });
+    setState(() => appCounter = 0);
   }
 
   Future getPaths() async {
@@ -131,49 +118,70 @@ class _MyHomePageState extends State<MyHomePage> {
     tempPath = tempDir.path;
     setState(() {});
   }
+
   @override
   void initState() {
     super.initState();
-    getPaths().then((_){
+    getPaths().then((_) {
       myFile = File('$documentsPath/pizzas.txt');
       writeFile();
     });
   }
-  
+
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Fali - JSON'),
-          backgroundColor: Colors.red,
-          ),
-      body: FutureBuilder(
-          future: callPizzas(),
-          builder: (BuildContext context, AsyncSnapshot<List<Pizza>> snapshot) {
+      appBar: AppBar(
+        title: const Text('Fali - JSON'),
+        backgroundColor: Colors.red,
+      ),
+      body: FutureBuilder<List<Pizza>>(
+        future: callPizzas(),
+        builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return const Text('Something went wrong');
+            return const Center(child: Text('Something went wrong'));
           }
+
           if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
-            return ListView.builder(
-                itemCount: (snapshot.data == null) ? 0 : snapshot.data!.length,
-                itemBuilder: (BuildContext context, int position) {
-                  return ListTile(
-                    title: Text(snapshot.data![position].pizzaName),
-                    subtitle: Text(snapshot.data![position].description +' - € ' +
-                    snapshot.data![position].price.toString()),
+
+          final pizzas = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: pizzas.length,
+            itemBuilder: (context, index) {
+              final pizza = pizzas[index];
+              return ListTile(
+                title: Text(pizza.pizzaName),
+                subtitle: Text(
+                    '${pizza.description} - € ${pizza.price.toString()}'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PizzaDetailScreen(pizza: pizza, isNew: false),
+                    ),
                   );
-                });
-          }),
-          floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PizzaDetailScreen()),
-            );
-          }),
-    );  
-}
+                },
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const PizzaDetailScreen(
+                        isNew: true,),
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

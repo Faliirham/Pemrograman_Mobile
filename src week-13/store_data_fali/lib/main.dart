@@ -28,13 +28,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- 
+ String pizzaString = '';
+
+ Future readJsonFile() async {
+  String myString = await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
+  setState(() {
+    pizzaString = myString;
+  });
+ }
+
+ @override
+  void initState() {
+    super.initState();
+    readJsonFile();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      ),
-      body: Container(),
+      appBar: AppBar(title: const Text('Fali - Flutter JSON Demo')),
+      body: Text(pizzaString),
     );
   }
 }

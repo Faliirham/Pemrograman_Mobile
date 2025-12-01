@@ -1,16 +1,27 @@
-# store_data_fali
+# Pemrograman Mobile - Pertemuan 13
 
-A new Flutter project.
+**NIM: 2341720121**
 
-## Getting Started
+**NAMA: FALI IRHAM MAULANA**
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## **Praktikum 1: Konversi Dart model ke JSON**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Langkah 1 - 10 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **main.dart :**
+
+![alt text](images/code.png)
+
+- **pizzalist.json :**
+
+![alt text](images/code1.png)
+
+```
+Soal 2
+- Masukkan hasil capture layar ke laporan praktikum Anda.
+- Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 2"
+```
+
+![alt text](images/images0.jpg)

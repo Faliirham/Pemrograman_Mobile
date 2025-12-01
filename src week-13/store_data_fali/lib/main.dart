@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import './model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String documentsPath = '';
+  String tempPath = '';
   int appCounter = 0;
   List<Pizza> myPizzas = [];
 
@@ -73,35 +76,37 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future getPaths() async {
+    final docDir = await getApplicationDocumentsDirectory();
+    final tempDir = await getTemporaryDirectory();
+
+    setState(() {
+      documentsPath = docDir.path;
+      tempPath = tempDir.path;
+    });
+  }
   @override
   void initState() {
     super.initState();
-    readAndWritepreference();
+    getPaths();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fali- Flutter JSON Demo'),
+        title: const Text('Fali- Path Provider'),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: Column(
+      body:Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'You have opened the app $appCounter times.',
+              'Doc Path: $documentsPath',
             ),
-            ElevatedButton(
-              onPressed: () {
-                deletePreference();
-              },
-              child: const Text('Reset counter'),
-            )
+            Text('Temp Path: $tempPath'),
           ],
         ),
-      ),
-    );
+      );
   }
 }

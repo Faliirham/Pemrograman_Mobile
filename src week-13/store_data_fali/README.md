@@ -102,3 +102,17 @@ Soal 6
 
 ![alt text](<images/HASIL 1.gif>)
 
+## **Praktikum 5: Akses filesystem dengan path_provider**
+
+### Langkah 1 - 7 
+
+- **main.dart :** 
+
+![alt text](images/code9.png)
+
+```
+Soal 7
+Capture hasil praktikum Anda dan lampirkan di README.
+Lalu lakukan commit dengan pesan "W13: Jawaban Soal 7".
+```
+![alt text](images/images3.jpg)

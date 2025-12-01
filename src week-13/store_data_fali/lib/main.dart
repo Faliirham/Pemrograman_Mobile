@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import './model/pizza.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int appCounter = 0;
   List<Pizza> myPizzas = [];
 
   Future<List<Pizza>> readJsonFile() async {
@@ -51,14 +53,30 @@ class _MyHomePageState extends State<MyHomePage> {
     return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
   }
 
+  Future<void> readAndWritepreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    appCounter = (prefs.getInt('counter') ?? 0);
+    appCounter++;
+
+    await prefs.setInt('counter', appCounter);
+
+    setState(() {
+      appCounter = appCounter;
+    });
+  }
+
+  Future deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    setState(() {
+      appCounter = 0;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    readJsonFile().then((value) {
-      setState(() {
-        myPizzas = value;
-      });
-    });
+    readAndWritepreference();
   }
 
   @override
@@ -68,14 +86,21 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Fali- Flutter JSON Demo'),
         backgroundColor: Colors.blue,
       ),
-      body: ListView.builder(
-        itemCount: myPizzas.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(myPizzas[index].pizzaName),
-            subtitle: Text('${myPizzas[index].description} - € ${myPizzas[index].price}'),
-          );
-        },
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'You have opened the app $appCounter times.',
+            ),
+            ElevatedButton(
+              onPressed: () {
+                deletePreference();
+              },
+              child: const Text('Reset counter'),
+            )
+          ],
+        ),
       ),
     );
   }

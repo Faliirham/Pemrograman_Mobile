@@ -149,13 +149,24 @@ class _MyHomePageState extends State<MyHomePage> {
           final pizzas = snapshot.data!;
 
           return ListView.builder(
-            itemCount: pizzas.length,
-            itemBuilder: (context, index) {
-              final pizza = pizzas[index];
-              return ListTile(
+          itemCount: pizzas.length,
+          itemBuilder: (BuildContext context, int position) {
+            final pizza = pizzas[position];
+
+            return Dismissible(
+              key: Key(pizza.id.toString()),
+              onDismissed: (item) {
+                HttpHelper helper = HttpHelper();
+
+                setState(() {
+                  pizzas.removeAt(position);
+                });
+
+                helper.deletePizza(pizza.id);
+              },
+              child: ListTile(
                 title: Text(pizza.pizzaName),
-                subtitle: Text(
-                    '${pizza.description} - € ${pizza.price.toString()}'),
+                subtitle: Text('${pizza.description} - €${pizza.price}'),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -165,9 +176,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-              );
-            },
-          );
+              ),
+            );
+          },
+        );
         },
       ),
       floatingActionButton: FloatingActionButton(

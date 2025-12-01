@@ -92,3 +92,25 @@ Soal 3
 ```
 
 ![alt text](<images/hasil 2.gif>)
+
+## **Praktikum 4: Menghapus Data dari Web Service (DELETE)**
+
+### Langkah 1 - 6
+
+- **Mockup API :**
+
+![alt text](images/image-5.png)
+
+- **main.dart :**
+
+![alt text](images/code8.png)
+
+- **httphelper.dart:**
+
+![alt text](images/code9.png)
+
+```
+Soal 4
+Capture hasil aplikasi Anda berupa GIF di README dan lakukan commit hasil jawaban Soal 4 dengan pesan "W14: Jawaban Soal 4"
+```
+![alt text](<images/hasil 3.gif>)

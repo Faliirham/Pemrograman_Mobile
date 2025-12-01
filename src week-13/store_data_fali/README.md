@@ -68,3 +68,22 @@ Soal 4
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 4"
 ```
 ![alt text](images/images2.jpg)
+
+## **Praktikum 3: Menangani error JSON**
+
+### 1 -4 
+
+- **model/pizza.dart :** 
+
+![alt text](images/code7.png)
+
+```
+Soal 5
+- Jelaskan maksud kode lebih safe dan maintainable!
+- Capture hasil praktikum Anda dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 5".
+```
+
+**Penjelasan :** Kode tersebut dianggap lebih aman dan mudah dipelihara karena setiap bagian telah ditulis dengan pendekatan yang mencegah aplikasi mengalami error saat menerima data yang tidak sesuai ekspektasi. Dengan menggunakan tryParse, nilai seperti id dan price tetap bisa diproses meskipun formatnya salah atau bukan angka, sehingga konstruktor tidak akan memicu crash dan objek masih dapat dibuat dengan nilai default. Penggunaan operator null coalescing seperti ?? juga memastikan bahwa jika suatu field tidak ada atau bernilai null dalam JSON, aplikasi tetap mendapatkan nilai pengganti yang aman tanpa menyebabkan exception. Selain itu, pemisahan konstanta seperti KeyId, KeyName, dan lainnya membuat kode lebih mudah dipelihara karena jika suatu nama key berubah, cukup diperbarui pada satu tempat saja tanpa harus mencari dan mengganti di seluruh file. Struktur seperti ini menjadikan proses parsing terkontrol, mudah dicek, serta meminimalkan bug ketika sumber data berubah atau tidak konsisten.
+
+![alt text](images/images2.jpg)

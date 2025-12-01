@@ -3,6 +3,7 @@ import 'dart:convert';
 import './model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +32,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late File myFile;
+  String fileText = '';
   String documentsPath = '';
   String tempPath = '';
   int appCounter = 0;
   List<Pizza> myPizzas = [];
+
+  Future<bool> writeFile() async {
+    try {
+      await myFile.writeAsString('Margaretha, Capricciosa, Napoli');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> readFile() async {
+    try {
+      String fileContent = await myFile.readAsString();
+      setState(() {
+        fileText = fileContent;
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 
   Future<List<Pizza>> readJsonFile() async {
     String myString = await DefaultAssetBundle.of(context)
@@ -80,15 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
     final docDir = await getApplicationDocumentsDirectory();
     final tempDir = await getTemporaryDirectory();
 
-    setState(() {
-      documentsPath = docDir.path;
-      tempPath = tempDir.path;
-    });
+    documentsPath = docDir.path;
+    tempPath = tempDir.path;
+    setState(() {});
   }
   @override
   void initState() {
     super.initState();
-    getPaths();
+    getPaths().then((_){
+      myFile = File('$documentsPath/pizzas.txt');
+      writeFile();
+    });
   }
 
   @override
@@ -104,7 +130,14 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Doc Path: $documentsPath',
             ),
-            Text('Temp Path: $tempPath'),
+            Text('Temp Path: $tempPath'
+            ),
+            ElevatedButton(
+              child: const Text('Write File'),
+              onPressed: () => readFile(),
+            ),
+            Text(fileText
+            ),
           ],
         ),
       );

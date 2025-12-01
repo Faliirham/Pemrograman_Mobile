@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import './model/pizza.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,13 +9,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fali - Flutter JSON Demo',
+      title: 'Fali- Flutter JSON Demo',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
     );
@@ -28,26 +29,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- String pizzaString = '';
+  List<Pizza> myPizzas = [];
 
- Future readJsonFile() async {
-  String myString = await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
-  setState(() {
-    pizzaString = myString;
-  });
- }
+  Future<List<Pizza>> readJsonFile() async {
+    String myString = await DefaultAssetBundle.of(context)
+        .loadString('assets/pizzalist.json');
+    List pizzaMapList = jsonDecode(myString);
+    
+    List<Pizza> myPizzas = [];
+    for (var pizza in pizzaMapList) {
+      Pizza myPizza = Pizza.fromJson(pizza);
+      myPizzas.add(myPizza);
+    }
+    
+    return myPizzas;
+  }
 
- @override
+  @override
   void initState() {
     super.initState();
-    readJsonFile();
+    readJsonFile().then((value) {
+      setState(() {
+        myPizzas = value;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Fali - Flutter JSON Demo')),
-      body: Text(pizzaString),
+      appBar: AppBar(
+        title: const Text('Fali- Flutter JSON Demo'),
+        backgroundColor: Colors.blue,
+      ),
+      body: ListView.builder(
+        itemCount: myPizzas.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(myPizzas[index].pizzaName),
+            subtitle: Text(myPizzas[index].description),
+          );
+        },
+      ),
     );
   }
 }

@@ -25,3 +25,21 @@ Soal 2
 ```
 
 ![alt text](images/images0.jpg)
+
+### Langkah 11 - 22
+
+- **main.dart :** 
+
+![alt text](images/code2.png)
+
+- **model/pizza.dart :** 
+
+![alt text](images/code3.png)
+
+```
+Soal 3
+- Masukkan hasil capture layar ke laporan praktikum Anda.
+- Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 3"
+```
+
+![alt text](images/images1.jpg)
